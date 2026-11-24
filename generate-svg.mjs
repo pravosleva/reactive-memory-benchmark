@@ -85,4 +85,4 @@ const svgContent = [
 ].join('\n')
 
 fs.writeFileSync(new URL('./last-benchmark.svg', resultsDir), svgContent)
-console.log('🖼️  Диаграмма ./results/last-benchmark.svg успешно сгенерирована!')
+console.log('Диаграмма ./results/last-benchmark.svg успешно сгенерирована!')

@@ -7,7 +7,7 @@ const svgPath = fileURLToPath(new URL('./last-benchmark.svg', resultsDir))
 const pngPath = fileURLToPath(new URL('./last-benchmark.png', resultsDir))
 
 if (!fs.existsSync(svgPath)) {
-  console.error('❌ Файл ./results/last-benchmark.svg не найден.')
+  console.error('⛔ Файл ./results/last-benchmark.svg не найден.')
   process.exit(1)
 }
 
@@ -25,14 +25,14 @@ try {
   fs.writeFileSync(pngPath, resvg.render().asPng())
   console.log('🖼️  PNG сгенерирован через @resvg/resvg-js (2x Retina): ./results/last-benchmark.png')
   rendered = true
-} catch {}
+} catch { }
 
 if (!rendered) {
   try {
     execFileSync('rsvg-convert', ['-z', '2', svgPath, '-o', pngPath], { stdio: 'ignore' })
     console.log('🖼️  PNG сгенерирован через rsvg-convert (2x Retina): ./results/last-benchmark.png')
     rendered = true
-  } catch {}
+  } catch { }
 }
 
 if (!rendered) {
@@ -46,21 +46,21 @@ if (!rendered) {
           '--disable-gpu',
           '--hide-scrollbars',
           '--default-background-color=0d1117',
-          `--screenshot=${pngPath}`,
-          `--window-size=${width},${height}`,
+          `--screenshot=${ pngPath }`,
+          `--window-size=${ width },${ height }`,
           '--force-device-scale-factor=2',
-          `file://${svgPath}`,
+          `file://${ svgPath }`,
         ],
         { stdio: 'ignore' }
       )
-      console.log(`🖼️  PNG сгенерирован через ${bin} (2x Retina): ./results/last-benchmark.png`)
+      console.log(`PNG сгенерирован через ${ bin } (2x Retina): ./results/last-benchmark.png`)
       rendered = true
       break
-    } catch {}
+    } catch { }
   }
 }
 
 if (!rendered) {
-  console.warn('⚠️  Не удалось сгенерировать PNG.')
+  console.warn('⛔ Не удалось сгенерировать PNG.')
   process.exit(1)
 }

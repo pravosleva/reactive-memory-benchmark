@@ -8,7 +8,7 @@ REQUIRED_NODE="22.20.0"
 CURRENT_NODE="$(node -v | sed 's/^v//')"
 
 if [ "$(printf '%s\n' "$REQUIRED_NODE" "$CURRENT_NODE" | sort -V | head -n1)" != "$REQUIRED_NODE" ]; then
-  echo "❌ Требуется Node.js >= v${REQUIRED_NODE} (текущая версия: v${CURRENT_NODE})"
+  echo "⛔ Требуется Node.js >= v${REQUIRED_NODE} (текущая версия: v${CURRENT_NODE})"
   exit 1
 fi
 
@@ -57,7 +57,7 @@ save_to_local_cache() {
 }
 
 restore_offline() {
-  echo "⚠️  Сетевой реестр npm недоступен — восстанавливаем из локального кэша..."
+  echo "Сетевой реестр npm недоступен — восстанавливаем из локального кэша..."
   mkdir -p node_modules/@pravosleva node_modules/@solidjs node_modules/@reatom node_modules/@vue node_modules/@angular node_modules/@preact node_modules/@resvg
 
   for pkg in "${PACKAGES[@]}"; do
@@ -86,7 +86,7 @@ restore_offline() {
 }
 
 if [ "$UPDATE_LATEST" = true ]; then
-  echo "🔄 [1/4] Обнуление node_modules и загрузка самых свежих версий (@latest)..."
+  echo "[1/4] Обнуление node_modules и загрузка самых свежих версий (@latest)..."
   rm -rf node_modules package-lock.json
   LATEST_SPECS=()
   for pkg in "${PACKAGES[@]}"; do
@@ -102,7 +102,7 @@ if [ "$UPDATE_LATEST" = true ]; then
     restore_offline
   fi
 elif [ ! -d "node_modules" ] || [ "$FORCE_INSTALL" = true ]; then
-  echo "📦 [1/4] Обнуление и установка зависимостей из package.json..."
+  echo "[1/4] Обнуление и установка зависимостей из package.json..."
   rm -rf node_modules
   if npm install --prefer-offline --no-audit --no-fund 2>/dev/null; then
     save_to_local_cache
@@ -110,7 +110,7 @@ elif [ ! -d "node_modules" ] || [ "$FORCE_INSTALL" = true ]; then
     restore_offline
   fi
 else
-  echo "📦 [1/4] Зависимости в node_modules уже готовы"
+  echo "[1/4] Зависимости в node_modules уже готовы"
 fi
 
 LOCAL_ENGINE_DIR="$HOME/projects/reactive-engine"
@@ -120,22 +120,22 @@ if [ "$USE_LOCAL" = true ] && [ -d "$LOCAL_ENGINE_DIR/dist" ]; then
   rm -rf node_modules/@pravosleva/reactive-engine
   ln -s "$LOCAL_ENGINE_DIR" node_modules/@pravosleva/reactive-engine
 elif [ "$USE_LOCAL" = true ]; then
-  echo "⚠️  [2/4] Локальная сборка $LOCAL_ENGINE_DIR/dist не найдена — используем пакет из node_modules"
+  echo "[2/4] Локальная сборка $LOCAL_ENGINE_DIR/dist не найдена — используем пакет из node_modules"
 else
-  echo "🔗 [2/4] Используются пакеты из node_modules (для локальной сборки: bash bench.sh --local)"
+  echo "[2/4] Используются пакеты из node_modules (для локальной сборки: bash bench.sh --local)"
 fi
 
-echo "🧪 [3/4] Прогрев V8 JIT и замер памяти в изолированных процессах..."
+echo "[3/4] Прогрев V8 JIT и замер памяти в изолированных процессах..."
 node --expose-gc "$PROJECT_DIR/run.mjs"
 
-echo "🖼️  [4/4] Генерация SVG, PNG (2x Retina) и обновление README.md..."
+echo "[4/4] Генерация SVG, PNG (2x Retina) и обновление README.md..."
 node "$PROJECT_DIR/generate-svg.mjs"
 node "$PROJECT_DIR/generate-png.mjs"
 node "$PROJECT_DIR/update-readme.mjs"
 
 for artifact in "results/last-benchmark.json" "results/last-benchmark.svg" "results/last-benchmark.png" "README.md"; do
   if [ ! -s "$PROJECT_DIR/$artifact" ]; then
-    echo "❌ Ошибка: артефакт $artifact не создан или пуст!"
+    echo "⛔ Ошибка: артефакт $artifact не создан или пуст!"
     exit 1
   fi
 done
