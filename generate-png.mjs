@@ -21,7 +21,14 @@ let rendered = false
 
 try {
   const { Resvg } = await import('@resvg/resvg-js')
-  const resvg = new Resvg(svgContent, { fitTo: { mode: 'zoom', value: 2 } })
+  const resvg = new Resvg(svgContent, {
+    fitTo: { mode: 'zoom', value: 2 },
+    font: {
+      loadSystemFonts: true,
+      defaultFontFamily: 'DejaVu Sans',
+      monospaceFamily: 'DejaVu Sans Mono',
+    },
+  })
   fs.writeFileSync(pngPath, resvg.render().asPng())
   console.log('🖼️  PNG сгенерирован через @resvg/resvg-js (2x Retina): ./results/last-benchmark.png')
   rendered = true
@@ -30,7 +37,7 @@ try {
 if (!rendered) {
   try {
     execFileSync('rsvg-convert', ['-z', '2', svgPath, '-o', pngPath], { stdio: 'ignore' })
-    console.log('🖼️  PNG сгенерирован через rsvg-convert (2x Retina): ./results/last-benchmark.png')
+    console.log('PNG сгенерирован через rsvg-convert (2x Retina): ./results/last-benchmark.png')
     rendered = true
   } catch { }
 }
