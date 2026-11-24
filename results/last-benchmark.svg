@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="745" viewBox="0 0 920 745">
+  <rect width="100%" height="100%" rx="14" fill="#0d1117" stroke="#30363d" stroke-width="1.5" />
+  <text x="32" y="44" fill="#f0f6fc" font-family="sans-serif" font-size="20" font-weight="700">Reactive Engines Memory Benchmark (Footprint, Churn &amp; Leaks)</text>
+  <text x="32" y="68" fill="#8b949e" font-family="monospace" font-size="12">Node.js v22.20.0 (linux x64) | Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz | Isolated V8 (--expose-gc)</text>
+  <text x="32" y="96" fill="#8b949e" font-family="monospace" font-size="11" font-weight="700">RANK  ENGINE &amp; METRICS</text>
+  <text x="395" y="96" fill="#8b949e" font-family="monospace" font-size="11" font-weight="700">MEMORY EFFICIENCY (LOWER = BETTER)</text>
+  <text x="882" y="96" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="11" font-weight="700">SCORE / RATIO</text>
+  <line x1="20" y1="105" x2="900" y2="105" stroke="#21262d" stroke-width="1" />
+  <g transform="translate(0, 115)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <text x="42" y="34" fill="#10b981" font-family="monospace" font-size="15" font-weight="700">#1</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="700">alien-signals v3.2.1</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 251 B | Tick: 119.4 B | Leak: <tspan fill="#f87171">29.40 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#10b981" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">2629.7 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#10b981" font-family="monospace" font-size="13" font-weight="700">1.00×</text>
+  </g>
+  <g transform="translate(0, 171)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#2</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">@preact/signals-core v1.14.5</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 257.7 B | Tick: 401.2 B | Leak: <tspan fill="#f59e0b">10.36 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="247" height="12" rx="4" fill="#3b82f6" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">2977.9 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">1.13×</text>
+  </g>
+  <g transform="translate(0, 227)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#3</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">@vue/reactivity v3.5.46</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 330.2 B | Tick: 247.4 B | Leak: <tspan fill="#f87171">23.97 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="207" height="12" rx="4" fill="#3b82f6" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">3549.6 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">1.35×</text>
+  </g>
+  <g transform="translate(0, 283)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#4</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">@angular/core (Signals) v22.3.0</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 517.4 B | Tick: 119.4 B | Leak: <tspan fill="#f59e0b">18.82 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="139" height="12" rx="4" fill="#3b82f6" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">5293.8 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">2.01×</text>
+  </g>
+  <g transform="translate(0, 339)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#5</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">SolidJS 2 (@solidjs/signals) v2.0.3</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 449.2 B | Tick: 1343.6 B | Leak: <tspan fill="#f87171">447.96 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="126" height="12" rx="4" fill="#3b82f6" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">5835.7 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">2.22×</text>
+  </g>
+  <g transform="translate(0, 395)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#6</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">@pravosleva/reactive-engine v3.0.4</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 590.7 B | Tick: 751.5 B | Leak: <tspan fill="#f87171">28.32 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="111" height="12" rx="4" fill="#64748b" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">6658.0 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">2.53×</text>
+  </g>
+  <g transform="translate(0, 451)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#7</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">$mol ($mol_wire_let) v1.0.1853</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 532.9 B | Tick: 1343.5 B | Leak: <tspan fill="#f87171">1176.89 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="110" height="12" rx="4" fill="#64748b" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">6672.5 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">2.54×</text>
+  </g>
+  <g transform="translate(0, 507)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#8</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">MobX v7.1.7</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 522.6 B | Tick: 1544.5 B | Leak: <tspan fill="#f87171">89.01 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="109" height="12" rx="4" fill="#64748b" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">6770.5 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">2.57×</text>
+  </g>
+  <g transform="translate(0, 563)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#9</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">Reatom (@reatom/core) v1001.3.0</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 1620.1 B | Tick: 2002.7 B | Leak: <tspan fill="#f87171">185.88 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="40" height="12" rx="4" fill="#64748b" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">18203.2 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">6.92×</text>
+  </g>
+  <g transform="translate(0, 619)">
+    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <text x="42" y="34" fill="#8b949e" font-family="monospace" font-size="15" font-weight="700">#10</text>
+    <text x="80" y="27" fill="#f0f6fc" font-family="sans-serif" font-size="14" font-weight="500">Effector v23.5.1</text>
+    <text x="80" y="45" fill="#8b949e" font-family="monospace" font-size="11">Node: 5835.9 B | Tick: 3379 B | Leak: <tspan fill="#f87171">128.60 B/cyc</tspan></text>
+    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="395" y="21" width="12" height="12" rx="4" fill="#64748b" />
+    <text x="691" y="32" fill="#f0f6fc" font-family="monospace" font-size="13" font-weight="700">61737.6 B</text>
+    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="monospace" font-size="13" font-weight="700">23.48×</text>
+  </g>
+  <text x="32" y="709" fill="#6e7681" font-family="monospace" font-size="11">Generated: 2026-11-24T10:00:18.914Z | Score = 10-node graph footprint + 1 batch tick alloc (lower is better)</text>
+  <text x="32" y="727" fill="#6e7681" font-family="monospace" font-size="11">Dispose Leak: <tspan fill="#8b949e">≤1 B/cyc clean</tspan> | <tspan fill="#f59e0b">1–20 B/cyc minor</tspan> | <tspan fill="#f87171">&gt;20 B/cyc retained subscriptions</tspan></text>
+</svg>
