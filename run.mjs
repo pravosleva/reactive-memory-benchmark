@@ -435,71 +435,108 @@ const ENGINES = [
   {
     id: 'mol',
     pkg: 'mol_wire_lib',
-    name: '$mol ($mol_wire_let)',
+    name: '$mol ($mol_wire_solo)',
     run: async () => {
       const molWirePkg = await import('mol_wire_lib')
-      const Let = molWirePkg.default?.$mol_wire_let ?? molWirePkg.$mol_wire_let
-      return measureMemoryProfile('$mol ($mol_wire_let)', {
+      const Solo = molWirePkg.default?.$mol_wire_solo ?? molWirePkg.$mol_wire_solo
+      const Fiber = molWirePkg.default?.$mol_wire_fiber ?? molWirePkg.$mol_wire_fiber
+      const mem = (proto, key) => {
+        const desc = Object.getOwnPropertyDescriptor(proto, key)
+        Object.defineProperty(proto, key, Solo(proto, key, desc))
+      }
+
+      return measureMemoryProfile('$mol ($mol_wire_solo)', {
         buildStaticGraph: (chains) => {
-          const keep = []
           let sink = 0
-          for (let i = 0; i < chains; i++) {
-            const { s, c1, c2, e } = Let({
-              s: (n) => n ?? i,
-              c1: () => s() + 1,
-              c2: () => c1() * 2,
-              e: () => {
-                sink += c2()
-              },
-            })
-            e()
-            keep.push(s, c1, c2, e)
+          class Chain {
+            constructor(init) {
+              this._init = init
+            }
+            s(next = this._init) {
+              return next
+            }
+            c1() {
+              return this.s() + 1
+            }
+            c2() {
+              return this.c1() * 2
+            }
+            e() {
+              sink += this.c2()
+            }
           }
+          mem(Chain.prototype, 's')
+          mem(Chain.prototype, 'c1')
+          mem(Chain.prototype, 'c2')
+          mem(Chain.prototype, 'e')
+
+          const keep = []
+          for (let i = 0; i < chains; i++) {
+            const node = new Chain(i)
+            node.e()
+            keep.push(node)
+          }
+          if (typeof Fiber?.sync === 'function') Fiber.sync()
           assert.ok(sink >= 0)
           return keep
         },
         setupTickGraph: () => {
           let sink = 0
-          const { a, b, c1, c2, c3, c4, c5, e } = Let({
-            a: (n) => n ?? 0,
-            b: (n) => n ?? 0,
-            c1: () => a() + b(),
-            c2: () => c1() * 2,
-            c3: () => c2() + a(),
-            c4: () => c3() - b(),
-            c5: () => c1() + c4(),
-            e: () => {
-              sink = c5()
-            },
-          })
-          e()
+          class TickGraph {
+            a(next = 0) { return next }
+            b(next = 0) { return next }
+            c1() { return this.a() + this.b() }
+            c2() { return this.c1() * 2 }
+            c3() { return this.c2() + this.a() }
+            c4() { return this.c3() - this.b() }
+            c5() { return this.c1() + this.c4() }
+            e() { sink = this.c5() }
+          }
+          for (const k of ['a', 'b', 'c1', 'c2', 'c3', 'c4', 'c5', 'e']) {
+            mem(TickGraph.prototype, k)
+          }
+          const g = new TickGraph()
+          g.e()
+          if (typeof Fiber?.sync === 'function') Fiber.sync()
           return {
             readSink: () => sink,
             step: (i) => {
-              a(i + 2)
-              b(i + 3)
-              e()
+              g.a(i + 2)
+              g.b(i + 3)
+              g.e()
+              if (typeof Fiber?.sync === 'function') Fiber.sync()
             },
           }
         },
         runMountDisposeCycle: (cycles) => {
-          const { rootA, rootB } = Let({
-            rootA: (n) => n ?? 1,
-            rootB: (n) => n ?? 2,
-          })
           let sink = 0
+          class Root {
+            rootA(next = 1) { return next }
+            rootB(next = 2) { return next }
+          }
+          mem(Root.prototype, 'rootA')
+          mem(Root.prototype, 'rootB')
+
+          class SubGraph {
+            constructor(root, offset) {
+              this.root = root
+              this.offset = offset
+            }
+            c() { return this.root.rootA() + this.root.rootB() + this.offset }
+            e() { sink += this.c() }
+          }
+          mem(SubGraph.prototype, 'c')
+          mem(SubGraph.prototype, 'e')
+
+          const root = new Root()
           for (let i = 0; i < cycles; i++) {
-            const { c, e } = Let({
-              c: () => rootA() + rootB() + i,
-              e: () => {
-                sink += c()
-              },
-            })
-            e()
-            rootA(i)
-            e()
-            if (typeof e.destructor === 'function') e.destructor()
-            if (typeof c.destructor === 'function') c.destructor()
+            const sub = new SubGraph(root, i)
+            sub.e()
+            root.rootA(i)
+            sub.e()
+            sub.e.destructor?.()
+            sub.c.destructor?.()
+            if (typeof Fiber?.sync === 'function') Fiber.sync()
           }
           assert.ok(sink > 0)
         },
