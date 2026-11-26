@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-25T13:05:02.634Z",
+  "timestamp": "2026-11-26T00:40:41.221Z",
   "nodeVersion": "v22.20.0",
   "platform": "linux x64",
   "cpuModel": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
@@ -12,31 +12,31 @@
       "Rank": 1,
       "Engine": "alien-signals",
       "Node (B)": 251,
-      "Tick Alloc (B)": 119.4,
-      "Leak (B/cycle)": 28.95,
-      "Memory Score (B)": 2629.7,
+      "Tick Alloc (B)": 121.7,
+      "Leak (B/cycle)": 26.44,
+      "Memory Score (B)": 2632,
       "Version": "v3.2.1",
       "Ratio": "1.00×"
     },
     {
       "Rank": 2,
       "Engine": "@preact/signals-core",
-      "Node (B)": 257.7,
-      "Tick Alloc (B)": 411.3,
-      "Leak (B/cycle)": 10.28,
-      "Memory Score (B)": 2988,
+      "Node (B)": 257.6,
+      "Tick Alloc (B)": 408.8,
+      "Leak (B/cycle)": 10.36,
+      "Memory Score (B)": 2985.1,
       "Version": "v1.14.5",
-      "Ratio": "1.14×"
+      "Ratio": "1.13×"
     },
     {
       "Rank": 3,
       "Engine": "@vue/reactivity",
       "Node (B)": 328.6,
-      "Tick Alloc (B)": 183.4,
+      "Tick Alloc (B)": 471.4,
       "Leak (B/cycle)": 13.39,
-      "Memory Score (B)": 3469.2,
+      "Memory Score (B)": 3757.2,
       "Version": "v3.5.46",
-      "Ratio": "1.32×"
+      "Ratio": "1.43×"
     },
     {
       "Rank": 4,
@@ -44,8 +44,8 @@
       "Node (B)": 368.8,
       "Tick Alloc (B)": 582.8,
       "Leak (B/cycle)": 0,
-      "Memory Score (B)": 4270.8,
-      "Version": "v1.0.1853",
+      "Memory Score (B)": 4270.5,
+      "Version": "v1.0.1855",
       "Ratio": "1.62×"
     },
     {
@@ -53,38 +53,38 @@
       "Engine": "@angular/core (Signals)",
       "Node (B)": 517.3,
       "Tick Alloc (B)": 119.4,
-      "Leak (B/cycle)": 59.99,
-      "Memory Score (B)": 5292.4,
+      "Leak (B/cycle)": 55.1,
+      "Memory Score (B)": 5292.7,
       "Version": "v22.3.0",
       "Ratio": "2.01×"
     },
     {
       "Rank": 6,
       "Engine": "SolidJS 2 (@solidjs/signals)",
-      "Node (B)": 447.1,
+      "Node (B)": 447.2,
       "Tick Alloc (B)": 1343.6,
-      "Leak (B/cycle)": 452.42,
-      "Memory Score (B)": 5815,
-      "Version": "v2.0.3",
+      "Leak (B/cycle)": 461.09,
+      "Memory Score (B)": 5815.3,
+      "Version": "v2.0.4",
       "Ratio": "2.21×"
     },
     {
       "Rank": 7,
       "Engine": "@pravosleva/reactive-engine",
-      "Node (B)": 590.7,
-      "Tick Alloc (B)": 751.5,
-      "Leak (B/cycle)": 24.92,
-      "Memory Score (B)": 6658,
-      "Version": "v3.0.4",
-      "Ratio": "2.53×"
+      "Node (B)": 607,
+      "Tick Alloc (B)": 487.5,
+      "Leak (B/cycle)": 36.54,
+      "Memory Score (B)": 6557,
+      "Version": "v3.0.5",
+      "Ratio": "2.49×"
     },
     {
       "Rank": 8,
       "Engine": "MobX",
-      "Node (B)": 522.3,
-      "Tick Alloc (B)": 1544.7,
-      "Leak (B/cycle)": 68.66,
-      "Memory Score (B)": 6768.1,
+      "Node (B)": 522.2,
+      "Tick Alloc (B)": 1544.5,
+      "Leak (B/cycle)": 70.26,
+      "Memory Score (B)": 6766.3,
       "Version": "v7.1.7",
       "Ratio": "2.57×"
     },
@@ -92,21 +92,21 @@
       "Rank": 9,
       "Engine": "Reatom (@reatom/core)",
       "Node (B)": 1620.1,
-      "Tick Alloc (B)": 2000.8,
-      "Leak (B/cycle)": 182.06,
-      "Memory Score (B)": 18201.3,
+      "Tick Alloc (B)": 2001.2,
+      "Leak (B/cycle)": 185.46,
+      "Memory Score (B)": 18202,
       "Version": "v1001.3.0",
       "Ratio": "6.92×"
     },
     {
       "Rank": 10,
       "Engine": "Effector",
-      "Node (B)": 5835.3,
+      "Node (B)": 5835.9,
       "Tick Alloc (B)": 3379,
-      "Leak (B/cycle)": 124.3,
-      "Memory Score (B)": 61732.2,
-      "Version": "v23.5.1",
-      "Ratio": "23.47×"
+      "Leak (B/cycle)": 127.36,
+      "Memory Score (B)": 61738.4,
+      "Version": "v23.5.2",
+      "Ratio": "23.46×"
     }
   ]
 }

@@ -15,15 +15,15 @@
   },
   "dependencies": {
     "@angular/core": "^22.3.0",
-    "@pravosleva/reactive-engine": "^3.0.4",
+    "@pravosleva/reactive-engine": "3.0.5",
     "@preact/signals-core": "^1.14.5",
     "@reatom/core": "^1001.3.0",
     "@resvg/resvg-js": "^2.6.2",
-    "@solidjs/signals": "^2.0.3",
+    "@solidjs/signals": "^2.0.4",
     "@vue/reactivity": "^3.5.46",
     "alien-signals": "^3.2.1",
-    "effector": "^23.4.4",
+    "effector": "^23.5.2",
     "mobx": "^7.1.7",
-    "mol_wire_lib": "^1.0.1852"
+    "mol_wire_lib": "^1.0.1855"
   }
 }
