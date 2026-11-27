@@ -44,6 +44,7 @@ PACKAGES=(
   "effector"
   "mobx"
   "mol_wire_lib"
+  "svelte"
 )
 
 save_to_local_cache() {
@@ -126,7 +127,7 @@ else
 fi
 
 echo "[3/4] Прогрев V8 JIT и замер памяти в изолированных процессах..."
-node --expose-gc "$PROJECT_DIR/run.mjs"
+node --expose-gc --conditions=browser "$PROJECT_DIR/run.mjs"
 
 echo "[4/4] Генерация SVG, PNG (2x Retina) и обновление README.md..."
 node "$PROJECT_DIR/generate-svg.mjs"

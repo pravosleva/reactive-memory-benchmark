@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-26T00:40:41.221Z",
+  "timestamp": "2026-11-27T14:22:51.277Z",
   "nodeVersion": "v22.20.0",
   "platform": "linux x64",
   "cpuModel": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
@@ -12,39 +12,39 @@
       "Rank": 1,
       "Engine": "alien-signals",
       "Node (B)": 251,
-      "Tick Alloc (B)": 121.7,
-      "Leak (B/cycle)": 26.44,
-      "Memory Score (B)": 2632,
+      "Tick Alloc (B)": 119.4,
+      "Leak (B/cycle)": 19.96,
+      "Memory Score (B)": 2629.7,
       "Version": "v3.2.1",
       "Ratio": "1.00×"
     },
     {
       "Rank": 2,
       "Engine": "@preact/signals-core",
-      "Node (B)": 257.6,
-      "Tick Alloc (B)": 408.8,
-      "Leak (B/cycle)": 10.36,
-      "Memory Score (B)": 2985.1,
+      "Node (B)": 257.4,
+      "Tick Alloc (B)": 348.2,
+      "Leak (B/cycle)": 14.16,
+      "Memory Score (B)": 2922.6,
       "Version": "v1.14.5",
-      "Ratio": "1.13×"
+      "Ratio": "1.11×"
     },
     {
       "Rank": 3,
       "Engine": "@vue/reactivity",
-      "Node (B)": 328.6,
-      "Tick Alloc (B)": 471.4,
-      "Leak (B/cycle)": 13.39,
-      "Memory Score (B)": 3757.2,
+      "Node (B)": 330.2,
+      "Tick Alloc (B)": 183.4,
+      "Leak (B/cycle)": 14.83,
+      "Memory Score (B)": 3484.9,
       "Version": "v3.5.46",
-      "Ratio": "1.43×"
+      "Ratio": "1.33×"
     },
     {
       "Rank": 4,
       "Engine": "$mol ($mol_wire_solo)",
-      "Node (B)": 368.8,
-      "Tick Alloc (B)": 582.8,
+      "Node (B)": 367.4,
+      "Tick Alloc (B)": 581.5,
       "Leak (B/cycle)": 0,
-      "Memory Score (B)": 4270.5,
+      "Memory Score (B)": 4255.7,
       "Version": "v1.0.1855",
       "Ratio": "1.62×"
     },
@@ -53,27 +53,27 @@
       "Engine": "@angular/core (Signals)",
       "Node (B)": 517.3,
       "Tick Alloc (B)": 119.4,
-      "Leak (B/cycle)": 55.1,
-      "Memory Score (B)": 5292.7,
+      "Leak (B/cycle)": 34.14,
+      "Memory Score (B)": 5292.6,
       "Version": "v22.3.0",
       "Ratio": "2.01×"
     },
     {
       "Rank": 6,
       "Engine": "SolidJS 2 (@solidjs/signals)",
-      "Node (B)": 447.2,
+      "Node (B)": 447,
       "Tick Alloc (B)": 1343.6,
-      "Leak (B/cycle)": 461.09,
-      "Memory Score (B)": 5815.3,
+      "Leak (B/cycle)": 445.24,
+      "Memory Score (B)": 5813.7,
       "Version": "v2.0.4",
       "Ratio": "2.21×"
     },
     {
       "Rank": 7,
       "Engine": "@pravosleva/reactive-engine",
-      "Node (B)": 607,
+      "Node (B)": 606.9,
       "Tick Alloc (B)": 487.5,
-      "Leak (B/cycle)": 36.54,
+      "Leak (B/cycle)": 32.74,
       "Memory Score (B)": 6557,
       "Version": "v3.0.5",
       "Ratio": "2.49×"
@@ -81,32 +81,42 @@
     {
       "Rank": 8,
       "Engine": "MobX",
-      "Node (B)": 522.2,
-      "Tick Alloc (B)": 1544.5,
-      "Leak (B/cycle)": 70.26,
-      "Memory Score (B)": 6766.3,
+      "Node (B)": 523.2,
+      "Tick Alloc (B)": 1544.7,
+      "Leak (B/cycle)": 72.64,
+      "Memory Score (B)": 6776.9,
       "Version": "v7.1.7",
-      "Ratio": "2.57×"
+      "Ratio": "2.58×"
     },
     {
       "Rank": 9,
+      "Engine": "Svelte 5 (Runes)",
+      "Node (B)": 517.6,
+      "Tick Alloc (B)": 2959.5,
+      "Leak (B/cycle)": 5309.8,
+      "Memory Score (B)": 8135.6,
+      "Version": "v5.59.2",
+      "Ratio": "3.09×"
+    },
+    {
+      "Rank": 10,
       "Engine": "Reatom (@reatom/core)",
       "Node (B)": 1620.1,
-      "Tick Alloc (B)": 2001.2,
-      "Leak (B/cycle)": 185.46,
-      "Memory Score (B)": 18202,
+      "Tick Alloc (B)": 2000.9,
+      "Leak (B/cycle)": 185.88,
+      "Memory Score (B)": 18201.4,
       "Version": "v1001.3.0",
       "Ratio": "6.92×"
     },
     {
-      "Rank": 10,
+      "Rank": 11,
       "Engine": "Effector",
-      "Node (B)": 5835.9,
+      "Node (B)": 5835.7,
       "Tick Alloc (B)": 3379,
-      "Leak (B/cycle)": 127.36,
-      "Memory Score (B)": 61738.4,
+      "Leak (B/cycle)": 130.43,
+      "Memory Score (B)": 61736.4,
       "Version": "v23.5.2",
-      "Ratio": "23.46×"
+      "Ratio": "23.48×"
     }
   ]
 }

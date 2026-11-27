@@ -24,6 +24,7 @@
     "alien-signals": "^3.2.1",
     "effector": "^23.5.2",
     "mobx": "^7.1.7",
-    "mol_wire_lib": "^1.0.1855"
+    "mol_wire_lib": "^1.0.1855",
+    "svelte": "^5.59.2"
   }
 }

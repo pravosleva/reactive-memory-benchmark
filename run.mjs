@@ -895,6 +895,82 @@ const ENGINES = [
       })
     },
   },
+  {
+    id: 'svelte5',
+    pkg: 'svelte',
+    name: 'Svelte 5 (Runes)',
+    run: async () => {
+      const svelte = await import('svelte')
+      const $ = await import('svelte/internal/client')
+      const createSignal = $.state ?? $.mutable_source ?? $.source
+      const doFlush = svelte.flushSync ?? $.flush
+
+      return measureMemoryProfile('Svelte 5 (Runes)', {
+        buildStaticGraph: (chains) => {
+          const keep = []
+          let sink = 0
+          const dispose = $.effect_root(() => {
+            for (let i = 0; i < chains; i++) {
+              const s = createSignal(i)
+              const c1 = $.derived(() => $.get(s) + 1)
+              const c2 = $.derived(() => $.get(c1) * 2)
+              $.effect(() => {
+                sink += $.get(c2)
+              })
+              keep.push(s, c1, c2)
+            }
+          })
+          doFlush()
+          keep.push(dispose)
+          assert.ok(sink >= 0)
+          return keep
+        },
+        setupTickGraph: () => {
+          const a = createSignal(0)
+          const b = createSignal(0)
+          const c1 = $.derived(() => $.get(a) + $.get(b))
+          const c2 = $.derived(() => $.get(c1) * 2)
+          const c3 = $.derived(() => $.get(c2) + $.get(a))
+          const c4 = $.derived(() => $.get(c3) - $.get(b))
+          const c5 = $.derived(() => $.get(c1) + $.get(c4))
+          let sink = 0
+          const dispose = $.effect_root(() => {
+            $.effect(() => {
+              sink = $.get(c5)
+            })
+          })
+          doFlush()
+          return {
+            readSink: () => sink,
+            step: (i) => {
+              $.set(a, i + 2)
+              $.set(b, i + 3)
+              doFlush()
+            },
+            dispose,
+          }
+        },
+        runMountDisposeCycle: (cycles) => {
+          const rootA = createSignal(1)
+          const rootB = createSignal(2)
+          let sink = 0
+          for (let i = 0; i < cycles; i++) {
+            const dispose = $.effect_root(() => {
+              const c = $.derived(() => $.get(rootA) + $.get(rootB) + i)
+              $.effect(() => {
+                sink += $.get(c)
+              })
+            })
+            doFlush()
+            $.set(rootA, i)
+            doFlush()
+            if (typeof dispose === 'function') dispose()
+          }
+          assert.ok(sink > 0)
+        },
+      })
+    },
+  },
 ]
 // ============================================================================
 // Режим дочернего воркера (--only=) vs Оркестратор
@@ -938,7 +1014,7 @@ if (onlyArg) {
       }
       execFile(
         process.execPath,
-        ['--expose-gc', scriptPath, `--only=${ engine.id }`],
+        ['--expose-gc', '--conditions=browser', scriptPath, `--only=${ engine.id }`],
         { encoding: 'utf8' },
         (err, stdout, stderr) => {
           if (timer) clearInterval(timer)
