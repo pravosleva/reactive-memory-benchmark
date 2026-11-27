@@ -21,16 +21,16 @@ const escapeXml = (str) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;')
 
-const width = 920
+const width = 980
 const headerHeight = 115
 const rowHeight = 56
-const footerHeight = 70
+const footerHeight = 88
 const height = headerHeight + rows.length * rowHeight + footerHeight
 
 // Чем меньше суммарный след (Footprint + Net Tick Alloc), тем выше компактность (100% у лидера)
 const bestScore = Number(rows.at(0)['Memory Score (B)'])
 const barMaxWidth = 280
-const barStartX = 395
+const barStartX = 455
 
 const rowsSvg = rows
   .map((r, idx) => {
@@ -48,15 +48,19 @@ const rowsSvg = rows
     const leakVal = Number(r['Leak (B/cycle)'])
     const leakColor = leakVal <= 1 ? '#8b949e' : leakVal <= 20 ? '#f59e0b' : '#f87171'
 
+    const minorGc = Number(r['Minor GC (count)'] ?? 0)
+    const gcPause = Number(r['GC Pause (ms)'] ?? 0)
+    const gcColor = minorGc === 0 ? '#8b949e' : minorGc <= 2 ? '#38bdf8' : '#fb923c'
+
     const titleText = r.Version ? `${ r.Engine } ${ r.Version }` : r.Engine
-    const subtitle = `Node: ${ r['Node (B)'] } B | Tick: ${ r['Tick Alloc (B)'] } B | Leak: `
+    const subtitle = `Node: ${ r['Node (B)'] } B | Tick: ${ r['Tick Alloc (B)'] } B | GC: `
 
     return [
       `  <g transform="translate(0, ${ y })">`,
       `    <rect x="20" y="2" width="${ width - 40 }" height="${ rowHeight - 6 }" rx="8" fill="${ rowBg }" />`,
       `    <text x="42" y="34" fill="${ rankColor }" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#${ escapeXml(r.Rank) }</text>`,
       `    <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="${ fontWeight }">${ escapeXml(titleText) }</text>`,
-      `    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">${ escapeXml(subtitle) }<tspan fill="${ leakColor }">${ leakVal.toFixed(2) } B/cyc</tspan></text>`,
+      `    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">${ escapeXml(subtitle) }<tspan fill="${ gcColor }">${ minorGc }× (${ gcPause.toFixed(1) }ms)</tspan> | Leak: <tspan fill="${ leakColor }">${ leakVal.toFixed(2) } B/cyc</tspan></text>`,
       `    <rect x="${ barStartX }" y="21" width="${ barMaxWidth }" height="12" rx="4" fill="#21262d" />`,
       `    <rect x="${ barStartX }" y="21" width="${ barWidth }" height="12" rx="4" fill="${ barColor }" />`,
       `    <text x="${ barStartX + barMaxWidth + 16 }" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">${ escapeXml(score.toFixed(1)) } B</text>`,
@@ -80,7 +84,8 @@ const svgContent = [
   `  <text x="${ width - 38 }" y="96" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11" font-weight="700">SCORE / RATIO</text>`,
   `  <line x1="20" y1="105" x2="${ width - 20 }" y2="105" stroke="#21262d" stroke-width="1" />`,
   rowsSvg,
-  `  <text x="32" y="${ height - 36 }" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">${ escapeXml(footerLine1) }</text>`,
+  `  <text x="32" y="${ height - 54 }" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">${ escapeXml(footerLine1) }</text>`,
+  `  <text x="32" y="${ height - 36 }" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">GC (50k ticks): <tspan fill="#8b949e">0× silent</tspan> | <tspan fill="#38bdf8">1–2× fast Scavenger</tspan> | <tspan fill="#fb923c">&gt;2× frequent Minor GC / pauses</tspan></text>`,
   `  <text x="32" y="${ height - 18 }" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Dispose Leak: <tspan fill="#8b949e">≤1 B/cyc clean</tspan> | <tspan fill="#f59e0b">1–20 B/cyc minor</tspan> | <tspan fill="#f87171">&gt;20 B/cyc retained subscriptions</tspan></text>`,
   `</svg>`,
 ].join('\n')

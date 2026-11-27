@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { execFile } from 'node:child_process'
-import { performance } from 'node:perf_hooks'
+import { PerformanceObserver, constants, performance } from 'node:perf_hooks'
 import { fileURLToPath } from 'node:url'
 import * as enginePkg from '@pravosleva/reactive-engine'
 
@@ -85,6 +85,7 @@ async function measureMemoryProfile(name, scenarios) {
     tickCtrl.step(i)
   }
 
+  // 2a. Точный замер аллокаций за 1 тик (5 000 итераций без переполнения New Space)
   const TICK_ITERS = 5000
   const baselineTickAlloc = measureTickBaseline(TICK_ITERS)
   let bestTickAlloc = Infinity
@@ -98,6 +99,32 @@ async function measureMemoryProfile(name, scenarios) {
     const after = process.memoryUsage().heapUsed
     const netPerTick = Math.max(0, (after - before) / TICK_ITERS - baselineTickAlloc)
     if (netPerTick < bestTickAlloc) bestTickAlloc = netPerTick
+  }
+
+  // Дожидаемся доставки отложенных уведомлений GC из секции 2a перед подпиской
+  await new Promise((r) => setTimeout(r, 0))
+
+  // 2b. Стресс-прогон на 50 000 тиков для замера реальных срабатываний и пауз GC V8
+  const GC_STRESS_ITERS = 50000
+  let gcCount = 0
+  let gcPauseMs = 0
+
+  const gcObserver = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      if (entry.detail?.flags === constants.NODE_PERFORMANCE_GC_FLAGS_FORCED) continue
+      gcCount++
+      gcPauseMs += entry.duration
+    }
+  })
+  gcObserver.observe({ entryTypes: ['gc'] })
+
+  try {
+    for (let i = 0; i < GC_STRESS_ITERS; i++) {
+      tickCtrl.step(i)
+    }
+    await new Promise((r) => setTimeout(r, 0))
+  } finally {
+    gcObserver.disconnect()
   }
 
   if (typeof tickCtrl.dispose === 'function') tickCtrl.dispose()
@@ -131,6 +158,8 @@ async function measureMemoryProfile(name, scenarios) {
     Engine: name,
     'Node (B)': Number(bytesPerNode.toFixed(1)),
     'Tick Alloc (B)': Number(bestTickAlloc.toFixed(1)),
+    'Minor GC (count)': gcCount,
+    'GC Pause (ms)': Number(gcPauseMs.toFixed(2)),
     'Leak (B/cycle)': Number(leakPerCycle.toFixed(2)),
     'Memory Score (B)': Number(memoryScore.toFixed(1)),
   }
@@ -1044,7 +1073,7 @@ if (onlyArg) {
           try {
             const parsed = JSON.parse(markerLine.slice('__RESULT__:'.length))
             console.log(
-              `${ prefix } ✔ (Node: ${ parsed['Node (B)'] } B | Tick: ${ parsed['Tick Alloc (B)'] } B | Leak: ${ parsed['Leak (B/cycle)'] } B)`
+              `${ prefix } ✔ (Node: ${ parsed['Node (B)'] } B | Tick: ${ parsed['Tick Alloc (B)'] } B | MinorGC: ${ parsed['Minor GC (count)'] }× / ${ parsed['GC Pause (ms)'] }ms | Leak: ${ parsed['Leak (B/cycle)'] } B)`
             )
             resolve(parsed)
           } catch (parseErr) {

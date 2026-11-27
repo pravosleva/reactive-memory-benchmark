@@ -13,8 +13,8 @@ const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
 const rows = data.results
 
 const tableHeader = [
-  '| Rank | Engine | Node (B) | Tick Alloc (B) | Leak (B/cycle) | Memory Score (B) | Ratio |',
-  '| :---: | :--- | :---: | :---: | :---: | :---: | :---: |',
+  '| Rank | Engine | Node (B) | Tick Alloc (B) | Minor GC | GC Pause (ms) | Leak (B/cycle) | Memory Score (B) | Ratio |',
+  '| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |',
 ].join('\n')
 
 const tableRows = rows
@@ -24,11 +24,24 @@ const tableRows = rows
     const engineName = isFirst ? `**${ label }**` : label
     const nodeVal = r['Node (B)']
     const tickVal = r['Tick Alloc (B)']
+    const minorGc = `${ r['Minor GC (count)'] ?? 0 }×`
+    const gcPause = Number(r['GC Pause (ms)'] ?? 0).toFixed(2)
     const leakVal = Number(r['Leak (B/cycle)']).toFixed(2)
     const scoreVal = r['Memory Score (B)']
-    return `| **${ r.Rank }** | ${ engineName } | \`${ nodeVal }\` | \`${ tickVal }\` | \`${ leakVal }\` | \`${ scoreVal }\` | \`${ r.Ratio }\` |`
+    return `| **${ r.Rank }** | ${ engineName } | \`${ nodeVal }\` | \`${ tickVal }\` | \`${ minorGc }\` | \`${ gcPause }\` | \`${ leakVal }\` | \`${ scoreVal }\` | \`${ r.Ratio }\` |`
   })
   .join('\n')
+
+// const byName = new Map(rows.map((r) => [r.Engine, r]))
+const mostFrequentGc = [...rows].sort(
+  (a, b) => Number(b['Minor GC (count)'] ?? 0) - Number(a['Minor GC (count)'] ?? 0)
+)[0]
+const longestGcPause = [...rows].sort(
+  (a, b) => Number(b['GC Pause (ms)'] ?? 0) - Number(a['GC Pause (ms)'] ?? 0)
+)[0]
+
+const formatGcExample = (row) =>
+  `${ row.Engine }: \`${ row['Minor GC (count)'] ?? 0 }× / ${ Number(row['GC Pause (ms)'] ?? 0).toFixed(2) } ms\``
 
 const asciiDiagram = [
   '```text',
@@ -90,7 +103,7 @@ const asciiDiagram = [
 
 const markdown = `# reactive-memory-benchmark
 
-Воспроизводимый бенчмарк потребления памяти, давления на сборщик мусора V8 (Young Generation) и утечек при динамическом монтировании/уничтожении графа для **10 реактивных движков** в изолированных процессах Node.js (\`--expose-gc\`).
+Воспроизводимый бенчмарк потребления памяти, давления на сборщик мусора V8 (Young Generation) и утечек при динамическом монтировании/уничтожении графа для **Реактивных движков** в изолированных процессах Node.js (\`--expose-gc\`).
 
 ![Reactive Engines Memory Benchmark](./results/last-benchmark.png)
 
@@ -109,9 +122,10 @@ ${ asciiDiagram }
 
 ### Как интерпретировать метрики памяти
 
-* **\`Node (B)\` — статический вес одного реактивного узла** после двойного \`global.gc()\` (на графе из \`10 000\` узлов: \`2 500\` сигналов → \`5 000\` computed → \`2 500\` эффектов). **Показывает, насколько компактны внутренние структуры движка** (интрузивные списки против \`Set\`/\`Map\` и замыканий).
+* **\`Node (B)\` — статический вес одного реактивного узла** после двойного \`global.gc()\` (на графе из \`${ data.graphNodes.toLocaleString('ru-RU') }\` узлов). **Показывает, насколько компактны внутренние структуры движка** (интрузивные списки против \`Set\`/\`Map\` и замыканий).
 * **\`Tick Alloc (B)\` — чистые временные аллокации за 1 батч-тик** в Young Generation кучи V8 (за вычетом базового следа \`baseline\`). **Отражает, создаёт ли движок очереди, массивы уведомлений или замыкания на каждый тик.**
-* **\`Leak (B/cycle)\` — остаточная память после \`2 000\` циклов создания и уничтожения динамического подграфа**, подписанного на долгоживущие корневые сигналы. **Значения \`≤ 1.00 B/cycle\` говорят о чистой отписке без висячих ссылок.**
+* **\`Minor GC\` и \`GC Pause (ms)\` — количество срабатываний и суммарное время пауз сборщика мусора V8** (\`PerformanceObserver\` с \`entryTypes: ['gc']\`) на стресс-прогоне из \`${ (data.gcStressIterations ?? 50000).toLocaleString('ru-RU') }\` тиков (без принудительных \`global.gc()\`). **Показывает реальный характер «пилы» памяти:** короткоживущие однопоколенческие объекты (например, у ${ formatGcExample(mostFrequentGc) }) быстро заполняют Young Generation, но почти бесплатно выметаются *Scavenger*, тогда как задержка ссылок в долгоживущих структурах (например, у ${ formatGcExample(longestGcPause) }) резко увеличивает суммарное время пауз GC.
+* **\`Leak (B/cycle)\` — остаточная память после \`${ data.mountCycles.toLocaleString('ru-RU') }\` циклов создания и уничтожения динамического подграфа**, подписанного на долгоживущие корневые сигналы. **Значения \`≤ 1.00 B/cycle\` говорят о чистой отписке без висячих ссылок.**
 * **\`Memory Score (B)\`** — композитный индекс (\`10 × Node (B) + Tick Alloc (B)\`), отражающий суммарный след типового 10-узлового виджета и одного его обновления (меньше — лучше).
 
 ## 3. Запуск стенда (\`bench.sh\`)

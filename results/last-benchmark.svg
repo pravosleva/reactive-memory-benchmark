@@ -1,122 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="801" viewBox="0 0 920 801">
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="819" viewBox="0 0 980 819">
   <rect width="100%" height="100%" rx="14" fill="#0d1117" stroke="#30363d" stroke-width="1.5" />
   <text x="32" y="44" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="20" font-weight="700">Reactive Engines Memory Benchmark (Footprint, Churn &amp; Leaks)</text>
   <text x="32" y="68" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="12">Node.js v22.20.0 (linux x64) | Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz | Isolated V8 (--expose-gc)</text>
   <text x="32" y="96" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11" font-weight="700">RANK  ENGINE &amp; METRICS</text>
-  <text x="395" y="96" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11" font-weight="700">MEMORY EFFICIENCY (LOWER = BETTER)</text>
-  <text x="882" y="96" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11" font-weight="700">SCORE / RATIO</text>
-  <line x1="20" y1="105" x2="900" y2="105" stroke="#21262d" stroke-width="1" />
+  <text x="455" y="96" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11" font-weight="700">MEMORY EFFICIENCY (LOWER = BETTER)</text>
+  <text x="942" y="96" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11" font-weight="700">SCORE / RATIO</text>
+  <line x1="20" y1="105" x2="960" y2="105" stroke="#21262d" stroke-width="1" />
   <g transform="translate(0, 115)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#161b22" />
     <text x="42" y="34" fill="#10b981" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#1</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="700">alien-signals v3.2.1</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 251 B | Tick: 125.4 B | Leak: <tspan fill="#f87171">39.26 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#10b981" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2635.8 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#10b981" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.00×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 251 B | Tick: 119.4 B | GC: <tspan fill="#38bdf8">1× (0.2ms)</tspan> | Leak: <tspan fill="#f87171">29.44 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#10b981" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2629.2 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#10b981" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.00×</text>
   </g>
   <g transform="translate(0, 171)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#0d1117" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#2</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">@preact/signals-core v1.14.5</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 257.5 B | Tick: 277.8 B | Leak: <tspan fill="#f87171">20.63 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="259" height="12" rx="4" fill="#3b82f6" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2852.4 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.08×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 256.2 B | Tick: 276.4 B | GC: <tspan fill="#fb923c">4× (0.5ms)</tspan> | Leak: <tspan fill="#f87171">21.80 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="259" height="12" rx="4" fill="#3b82f6" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2838.6 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.08×</text>
   </g>
   <g transform="translate(0, 227)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#161b22" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#3</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">@vue/reactivity v3.5.46</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 328.7 B | Tick: 183.4 B | Leak: <tspan fill="#f87171">20.63 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="213" height="12" rx="4" fill="#3b82f6" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">3470.4 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.32×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 328.7 B | Tick: 183.4 B | GC: <tspan fill="#38bdf8">1× (0.2ms)</tspan> | Leak: <tspan fill="#f87171">30.70 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="212" height="12" rx="4" fill="#3b82f6" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">3469.9 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.32×</text>
   </g>
   <g transform="translate(0, 283)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#0d1117" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#4</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">$mol ($mol_wire_solo) v1.0.1855</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 368.8 B | Tick: 582.8 B | Leak: <tspan fill="#8b949e">0.00 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="173" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">4270.5 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.62×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 368.1 B | Tick: 582.8 B | GC: <tspan fill="#fb923c">36× (4.1ms)</tspan> | Leak: <tspan fill="#8b949e">0.00 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="173" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">4264.0 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">1.62×</text>
   </g>
   <g transform="translate(0, 339)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#161b22" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#5</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">@angular/core (Signals) v22.3.0</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 517.2 B | Tick: 119.4 B | Leak: <tspan fill="#f87171">67.23 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="139" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">5291.6 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.01×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 517.5 B | Tick: 119.4 B | GC: <tspan fill="#8b949e">0× (0.0ms)</tspan> | Leak: <tspan fill="#f87171">56.24 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="139" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">5294.0 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.01×</text>
   </g>
   <g transform="translate(0, 395)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#0d1117" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#6</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">SolidJS 2 (@solidjs/signals) v2.0.4</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 446.7 B | Tick: 1343.6 B | Leak: <tspan fill="#f87171">74.03 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="127" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">5810.5 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.20×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 447.2 B | Tick: 1343.6 B | GC: <tspan fill="#fb923c">5× (11.8ms)</tspan> | Leak: <tspan fill="#f87171">96.31 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="127" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">5815.4 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.21×</text>
   </g>
   <g transform="translate(0, 451)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#161b22" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#7</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">@pravosleva/reactive-engine v3.0.5</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 606.9 B | Tick: 487.5 B | Leak: <tspan fill="#f87171">32.29 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="113" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">6556.9 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.49×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 606.9 B | Tick: 487.5 B | GC: <tspan fill="#fb923c">3× (0.5ms)</tspan> | Leak: <tspan fill="#f87171">31.91 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="112" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">6557.0 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.49×</text>
   </g>
   <g transform="translate(0, 507)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#0d1117" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#8</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">MobX v7.1.7</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 521.7 B | Tick: 1544.6 B | Leak: <tspan fill="#f87171">71.77 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="109" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">6761.7 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.57×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 522.2 B | Tick: 1544.7 B | GC: <tspan fill="#fb923c">9× (1.3ms)</tspan> | Leak: <tspan fill="#f87171">51.38 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="109" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">6766.7 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">2.57×</text>
   </g>
   <g transform="translate(0, 563)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#161b22" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#9</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">Svelte 5 (Runes) v5.59.2</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 518 B | Tick: 2929.5 B | Leak: <tspan fill="#f87171">46.62 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="91" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">8109.6 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">3.08×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 518 B | Tick: 2929.4 B | GC: <tspan fill="#fb923c">21× (93.8ms)</tspan> | Leak: <tspan fill="#f87171">128.20 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="91" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">8109.6 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">3.08×</text>
   </g>
   <g transform="translate(0, 619)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#0d1117" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#0d1117" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#10</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">Reatom (@reatom/core) v1001.3.0</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 1620.1 B | Tick: 2002.2 B | Leak: <tspan fill="#f59e0b">9.13 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="41" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">18203.0 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">6.91×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 1620.1 B | Tick: 2000.8 B | GC: <tspan fill="#fb923c">18× (14.8ms)</tspan> | Leak: <tspan fill="#f87171">22.51 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="40" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">18201.3 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">6.92×</text>
   </g>
   <g transform="translate(0, 675)">
-    <rect x="20" y="2" width="880" height="50" rx="8" fill="#161b22" />
+    <rect x="20" y="2" width="940" height="50" rx="8" fill="#161b22" />
     <text x="42" y="34" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="15" font-weight="700">#11</text>
     <text x="80" y="27" fill="#f0f6fc" font-family="'DejaVu Sans', 'Inter', 'Liberation Sans', sans-serif" font-size="14" font-weight="500">Effector v23.5.2</text>
-    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 5835.4 B | Tick: 3379 B | Leak: <tspan fill="#f87171">129.21 B/cyc</tspan></text>
-    <rect x="395" y="21" width="280" height="12" rx="4" fill="#21262d" />
-    <rect x="395" y="21" width="12" height="12" rx="4" fill="#64748b" />
-    <text x="691" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">61733.0 B</text>
-    <text x="882" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">23.42×</text>
+    <text x="80" y="45" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Node: 5836 B | Tick: 3379 B | GC: <tspan fill="#fb923c">40× (7.5ms)</tspan> | Leak: <tspan fill="#f87171">127.58 B/cyc</tspan></text>
+    <rect x="455" y="21" width="280" height="12" rx="4" fill="#21262d" />
+    <rect x="455" y="21" width="12" height="12" rx="4" fill="#64748b" />
+    <text x="751" y="32" fill="#f0f6fc" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">61738.6 B</text>
+    <text x="942" y="32" text-anchor="end" fill="#8b949e" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="13" font-weight="700">23.48×</text>
   </g>
-  <text x="32" y="765" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Generated: 2026-11-27T15:31:32.851Z | Score = 10-node graph footprint + 1 batch tick alloc (lower is better)</text>
-  <text x="32" y="783" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Dispose Leak: <tspan fill="#8b949e">≤1 B/cyc clean</tspan> | <tspan fill="#f59e0b">1–20 B/cyc minor</tspan> | <tspan fill="#f87171">&gt;20 B/cyc retained subscriptions</tspan></text>
+  <text x="32" y="765" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Generated: 2026-11-27T17:27:28.570Z | Score = 10-node graph footprint + 1 batch tick alloc (lower is better)</text>
+  <text x="32" y="783" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">GC (50k ticks): <tspan fill="#8b949e">0× silent</tspan> | <tspan fill="#38bdf8">1–2× fast Scavenger</tspan> | <tspan fill="#fb923c">&gt;2× frequent Minor GC / pauses</tspan></text>
+  <text x="32" y="801" fill="#6e7681" font-family="'DejaVu Sans Mono', 'JetBrains Mono', 'Fira Code', 'Liberation Mono', monospace" font-size="11">Dispose Leak: <tspan fill="#8b949e">≤1 B/cyc clean</tspan> | <tspan fill="#f59e0b">1–20 B/cyc minor</tspan> | <tspan fill="#f87171">&gt;20 B/cyc retained subscriptions</tspan></text>
 </svg>
