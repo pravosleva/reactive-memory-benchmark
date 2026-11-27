@@ -47,7 +47,7 @@ function measureTickBaseline(iterations) {
   return minAlloc
 }
 
-function measureMemoryProfile(name, scenarios) {
+async function measureMemoryProfile(name, scenarios) {
   const { buildStaticGraph, setupTickGraph, runMountDisposeCycle } = scenarios
 
   // --------------------------------------------------------------------------
@@ -107,11 +107,18 @@ function measureMemoryProfile(name, scenarios) {
   // 3. Mount / Dispose: утечка подписок на корневых сигналах за 2 000 циклов
   // --------------------------------------------------------------------------
   const MOUNT_CYCLES = 2000
-  runMountDisposeCycle(50) // прогрев
+  await runMountDisposeCycle(50) // прогрев
+  await new Promise((r) => setTimeout(r, 0))
 
   forceGc()
   const heapBeforeMount = process.memoryUsage().heapUsed
-  runMountDisposeCycle(MOUNT_CYCLES)
+  await runMountDisposeCycle(MOUNT_CYCLES)
+  // -- Очищаем все очереди микрозадач (queueMicrotask) и макрозадач перед замером GC
+  // это устанавливает единое и честное правило для всех 11 движков без исключения:
+  // перед финальным замером forceGc() цикл событий Node.js полностью дожидается выполнения всех queueMicrotask,
+  // Promise.then и запланированные макрозадачи, поэтому ни один движок не получит случайный «хвост» в замере Leak (B/cycle)
+  await new Promise((r) => setTimeout(r, 0))
+  // --
   forceGc()
   const heapAfterMount = process.memoryUsage().heapUsed
 
@@ -137,8 +144,8 @@ const ENGINES = [
     id: 'reactive-engine',
     pkg: '@pravosleva/reactive-engine',
     name: '@pravosleva/reactive-engine',
-    run: async () =>
-      measureMemoryProfile('@pravosleva/reactive-engine', {
+    run: async () => {
+      return await measureMemoryProfile('@pravosleva/reactive-engine', {
         buildStaticGraph: (chains) => {
           const engine = new ReactiveEngine()
           const keep = [engine]
@@ -197,7 +204,8 @@ const ENGINES = [
           }
           assert.ok(sink > 0)
         },
-      }),
+      })
+    },
   },
   {
     id: 'vue',
@@ -205,7 +213,7 @@ const ENGINES = [
     name: '@vue/reactivity',
     run: async () => {
       const { ref, computed, effect, effectScope } = await import('@vue/reactivity')
-      return measureMemoryProfile('@vue/reactivity', {
+      return await measureMemoryProfile('@vue/reactivity', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -285,7 +293,7 @@ const ENGINES = [
       const { createSignal, createComputed, createWatch, setActiveConsumer } = await import(
         '@angular/core/primitives/signals'
       )
-      return measureMemoryProfile('@angular/core (Signals)', {
+      return await measureMemoryProfile('@angular/core (Signals)', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -376,7 +384,7 @@ const ENGINES = [
       const mobxPkg = await import('mobx')
       const { observable, computed, autorun, runInAction, configure } = mobxPkg.default ?? mobxPkg
       if (typeof configure === 'function') configure({ enforceActions: 'never' })
-      return measureMemoryProfile('MobX', {
+      return await measureMemoryProfile('MobX', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -445,7 +453,7 @@ const ENGINES = [
         Object.defineProperty(proto, key, Solo(proto, key, desc))
       }
 
-      return measureMemoryProfile('$mol ($mol_wire_solo)', {
+      return await measureMemoryProfile('$mol ($mol_wire_solo)', {
         buildStaticGraph: (chains) => {
           let sink = 0
           class Chain {
@@ -551,7 +559,7 @@ const ENGINES = [
       const solidMod = await import('@solidjs/signals')
       const { createSignal, createMemo, createEffect, createRoot } = solidMod
       const doFlush = solidMod.flush ?? solidMod.flushSync ?? (() => { })
-      return measureMemoryProfile('SolidJS 2 (@solidjs/signals)', {
+      return await measureMemoryProfile('SolidJS 2 (@solidjs/signals)', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -629,7 +637,7 @@ const ENGINES = [
       const { signal, computed, effect, effectScope, startBatch, endBatch } = await import(
         'alien-signals'
       )
-      return measureMemoryProfile('alien-signals', {
+      return await measureMemoryProfile('alien-signals', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -701,7 +709,7 @@ const ENGINES = [
     name: '@preact/signals-core',
     run: async () => {
       const { signal, computed, effect, batch } = await import('@preact/signals-core')
-      return measureMemoryProfile('@preact/signals-core', {
+      return await measureMemoryProfile('@preact/signals-core', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -763,7 +771,7 @@ const ENGINES = [
     name: 'Reatom (@reatom/core)',
     run: async () => {
       const { atom, computed, notify } = await import('@reatom/core')
-      return measureMemoryProfile('Reatom (@reatom/core)', {
+      return await measureMemoryProfile('Reatom (@reatom/core)', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -832,7 +840,7 @@ const ENGINES = [
     run: async () => {
       const effPkg = await import('effector')
       const { createStore, createEvent, combine, clearNode } = effPkg.default ?? effPkg
-      return measureMemoryProfile('Effector', {
+      return await measureMemoryProfile('Effector', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
@@ -905,7 +913,7 @@ const ENGINES = [
       const createSignal = $.state ?? $.mutable_source ?? $.source
       const doFlush = svelte.flushSync ?? $.flush
 
-      return measureMemoryProfile('Svelte 5 (Runes)', {
+      return await measureMemoryProfile('Svelte 5 (Runes)', {
         buildStaticGraph: (chains) => {
           const keep = []
           let sink = 0
